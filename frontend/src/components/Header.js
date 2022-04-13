@@ -34,7 +34,7 @@ const Header = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Stories</Nav.Link>
+            <Link to="/posts">Posts</Link>
           </Nav>
           <div className="d-flex">
             {access ? (

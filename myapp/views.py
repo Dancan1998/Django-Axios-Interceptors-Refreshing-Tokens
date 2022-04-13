@@ -1,18 +1,19 @@
-from rest_framework.decorators import renderer_classes, api_view
-from rest_framework.renderers import JSONRenderer
+from .serializers import PostSerializer
+from .models import Post
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 
-# Create your views here.
-@api_view(['GET'])
-@renderer_classes((JSONRenderer,))
-def home(request):
-    data = {
-        'name': 'Dancan Chibole'
-    }
-    return Response(data)
+class ListPostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
