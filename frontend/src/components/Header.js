@@ -1,11 +1,14 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Home</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Home</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -16,9 +19,9 @@ const Header = () => {
             <Nav.Link href="#action1">Stories</Nav.Link>
           </Nav>
           <div className="d-flex">
-            <Nav.Link href="">Login</Nav.Link>
+            <Link to="/login">Login</Link>
 
-            <Nav.Link href="">Logout</Nav.Link>
+            <Button>Logout</Button>
           </div>
         </Navbar.Collapse>
       </Container>
