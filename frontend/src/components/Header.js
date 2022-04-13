@@ -1,8 +1,26 @@
-import React from "react";
+import { useEffect } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../actions/userActions";
+import { useSelector, useDispatch } from "react-redux";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userDetails } = userLogin;
+  const { access = "" } = userDetails;
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    if (!access) {
+      navigate("/login");
+    }
+  }, [navigate, access]);
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -19,9 +37,11 @@ const Header = () => {
             <Nav.Link href="#action1">Stories</Nav.Link>
           </Nav>
           <div className="d-flex">
-            <Link to="/login">Login</Link>
-
-            <Button>Logout</Button>
+            {access ? (
+              <Button onClick={handleLogout}>Logout</Button>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>
