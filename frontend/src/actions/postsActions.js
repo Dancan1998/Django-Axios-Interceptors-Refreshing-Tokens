@@ -1,6 +1,5 @@
 import { POSTS_FAIL, POSTS_REQUEST, POSTS_SUCCESS } from "../constants";
 import { axiosInstance } from "../axiosInstance";
-import axios from "axios";
 
 export const listPosts = () => async (dispatch) => {
   try {
