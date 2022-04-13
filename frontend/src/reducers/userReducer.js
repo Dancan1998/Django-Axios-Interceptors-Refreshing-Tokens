@@ -1,9 +1,6 @@
 import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "../constants";
 
-export const userLoginReducer = (
-  state = { loading: false, error: false, userDetails: {}, userLogout: false },
-  action
-) => {
+export const userLoginReducer = (state = {}, action) => {
   const { type, payload } = action;
 
   if (type === LOGIN_REQUEST) {
@@ -18,6 +15,7 @@ export const userLoginReducer = (
       ...state,
       loading: false,
       userDetails: payload,
+      userLogout: false,
     };
   }
 
