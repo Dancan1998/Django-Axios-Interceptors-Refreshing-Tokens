@@ -35,6 +35,7 @@ const Header = () => {
             navbarScroll
           >
             <Link to="/posts">Posts</Link>
+            <Link to="/protected">Protected</Link>
           </Nav>
           <div className="d-flex">
             {access ? (

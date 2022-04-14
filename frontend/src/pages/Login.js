@@ -26,7 +26,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = loginDetails;
-    //login here
     dispatch(login(username, password));
   };
 
