@@ -15,11 +15,11 @@ const Header = () => {
     dispatch(logout());
   };
 
-  useEffect(() => {
-    if (!access) {
-      navigate("/login");
-    }
-  }, [navigate, access]);
+  // useEffect(() => {
+  //   if (!access) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate, access]);
 
   return (
     <Navbar bg="light" expand="lg">

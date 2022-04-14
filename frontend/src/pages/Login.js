@@ -2,15 +2,17 @@ import { useState, useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userDetails = {}, loading, error } = userLogin;
+  const { userDetails = {} } = userLogin;
   const { refresh = "", access = "" } = userDetails;
+  const location = useLocation();
+  const redirectPath = location.state?.path || "/";
 
   const [loginDetails, setLoginDetails] = useState({
     username: "",
@@ -31,9 +33,9 @@ const Login = () => {
 
   useEffect(() => {
     if (access && refresh) {
-      navigate("/");
+      navigate(redirectPath, { replace: true });
     }
-  }, [access, refresh, navigate]);
+  }, [access, refresh, navigate, redirectPath]);
 
   return (
     <Container>
